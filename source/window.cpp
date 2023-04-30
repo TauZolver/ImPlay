@@ -341,10 +341,10 @@ void Window::SetWindowFullscreen(bool fs) {
     GLFWmonitor* monitor = getMonitor(window);
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
     glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
-    glfwSetWindowAttrib(window, GLFW_AUTO_ICONIFY, GL_FALSE);
+    glfwSetWindowAttrib(window, GLFW_AUTO_ICONIFY, GL_TRUE);
   } else
     glfwSetWindowMonitor(window, nullptr, x, y, w, h, 0);
-    glfwSetWindowAttrib(window, GLFW_AUTO_ICONIFY, GL_TRUE);
+    glfwSetWindowAttrib(window, GLFW_AUTO_ICONIFY, GL_FALSE);
 }
 
 void Window::SetWindowShouldClose(bool c) { glfwSetWindowShouldClose(window, c); }
