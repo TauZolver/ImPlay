@@ -155,6 +155,7 @@ GLFWwindow* Window::createWindow() {
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
   glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+  glfwWindowHint(GLFW_AUTO_ICONFIY, GL_FALSE);
   return glfwCreateWindow(640, 480, title.c_str(), nullptr, nullptr);
 }
 
