@@ -155,7 +155,7 @@ GLFWwindow* Window::createWindow() {
   glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
   glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-  glfwWindowHint(GLFW_AUTO_ICONIFY, GL_FALSE);
+  glfwWindowHint(GLFW_AUTO_ICONIFY, GL_TRUE);
   return glfwCreateWindow(640, 480, title.c_str(), nullptr, nullptr);
 }
 
@@ -340,8 +340,10 @@ void Window::SetWindowFullscreen(bool fs) {
     glfwGetWindowSize(window, &w, &h);
     GLFWmonitor* monitor = getMonitor(window);
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    glfwWindowHint(GLFW_AUTO_ICONIFY, GL_FALSE);
     glfwSetWindowMonitor(window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
   } else
+    glfwWindowHint(GLFW_AUTO_ICONIFY, GL_TRUE);
     glfwSetWindowMonitor(window, nullptr, x, y, w, h, 0);
 }
 

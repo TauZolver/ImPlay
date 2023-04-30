@@ -102,53 +102,53 @@ jobs:
           path: |
             build/ImPlay-*.msi
             build/ImPlay-*.zip
-  publish:
-    # needs: [linux, macos, win]
-    needs: [win]
-    runs-on: ubuntu-latest
-    if: ${{ github.ref == 'refs/heads/main' }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
-      - run: |
-          for f in ImPlay-*/*; do
-            mv "$f" "${f/ImPlay-*-/ImPlay-dev-}"
-          done
-      - uses: rickstaa/action-create-tag@v1
-        with:
-          tag: continuous
-          force_push_tag: true
-      - uses: ncipollo/release-action@v1
-        with:
-          commit: ${{ github.sha }}
-          tag: continuous
-          artifacts: "ImPlay-dev-*"
-          allowUpdates: true
-          prerelease: true
-          name: Continuous build
-          body: |
-            > WARNING: This is the DEV version, may contains bugs or unfinished features, [Stable version](https://github.com/tsl0922/ImPlay/releases/latest). 
-            # Install
-            ## Windows
-            - MSI
-              - Download the msi executable
-              - Run the MSI installer
-              - Run ImPlay from Start Menu
-            - Zip
-              - Download the windows zip
-              - Extract the zip
-              - Run `ImPlay.exe`
-            ## macOS
-            - Download the dmg file
-            - Double click the dmg to show it's contents
-            - Drag ImPlay to `Applications` folder
-            - Run ImPlay from Launchpad
-            ## Linux
-            - Debian Package
-              - Download the deb file
-              - Install: `sudo apt install ./ImPlay-*.deb`
-              - Run `ImPlay`
-            - AppImage
-              - Download the AppImage file
-              - Run `chmod u+x ImPlay-*.AppImage && ./ImPlay-*.AppImage`
+  # publish:
+  #   # needs: [linux, macos, win]
+  #   needs: [win]
+  #   runs-on: ubuntu-latest
+  #   if: ${{ github.ref == 'refs/heads/main' }}
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: actions/download-artifact@v3
+  #     - run: |
+  #         for f in ImPlay-*/*; do
+  #           mv "$f" "${f/ImPlay-*-/ImPlay-dev-}"
+  #         done
+  #     - uses: rickstaa/action-create-tag@v1
+  #       with:
+  #         tag: continuous
+  #         force_push_tag: true
+  #     - uses: ncipollo/release-action@v1
+  #       with:
+  #         commit: ${{ github.sha }}
+  #         tag: continuous
+  #         artifacts: "ImPlay-dev-*"
+  #         allowUpdates: true
+  #         prerelease: true
+  #         name: Continuous build
+  #         body: |
+  #           > WARNING: This is the DEV version, may contains bugs or unfinished features, [Stable version](https://github.com/tsl0922/ImPlay/releases/latest). 
+  #           # Install
+  #           ## Windows
+  #           - MSI
+  #             - Download the msi executable
+  #             - Run the MSI installer
+  #             - Run ImPlay from Start Menu
+  #           - Zip
+  #             - Download the windows zip
+  #             - Extract the zip
+  #             - Run `ImPlay.exe`
+  #           ## macOS
+  #           - Download the dmg file
+  #           - Double click the dmg to show it's contents
+  #           - Drag ImPlay to `Applications` folder
+  #           - Run ImPlay from Launchpad
+  #           ## Linux
+  #           - Debian Package
+  #             - Download the deb file
+  #             - Install: `sudo apt install ./ImPlay-*.deb`
+  #             - Run `ImPlay`
+  #           - AppImage
+  #             - Download the AppImage file
+  #             - Run `chmod u+x ImPlay-*.AppImage && ./ImPlay-*.AppImage`
 
